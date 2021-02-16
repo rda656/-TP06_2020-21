@@ -32,7 +32,8 @@ public class Oficial extends Vehiculo{
     }
 
     public  void setNumeroPlazas(int numeroPlazas) {
-        this.numeroPlazas = numeroPlazas;
+        if (numeroPlazas > 0)
+            this.numeroPlazas = numeroPlazas;
     }
 
     @Override

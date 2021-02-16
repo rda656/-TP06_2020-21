@@ -145,8 +145,7 @@ public class GestionVehiculos {
      * @param cPertenece nuevo cuerpo al que pertenece el vehículo.
      * @param numeroPlazas cantidad de número de plazas que posee.
      */
-    public static void modificarVehiculo(String matricula, String marca, String modelo, 
-            cuerpo cPertenece, int numeroPlazas) {
+    public static void modificarVehiculo(String matricula, String marca, String modelo, cuerpo cPertenece, int numeroPlazas) {
         vehiculos[posicion].setMatricula(matricula);
         vehiculos[posicion].setMarca(marca);
         vehiculos[posicion].setModelo(modelo);
@@ -163,8 +162,7 @@ public class GestionVehiculos {
      * @param propietario nuevo dueño del vehículo.
      * @param numeroPlazaAparcamiento nueva plaza de aparcamiento asociada al vehículo.
      */
-    public static void modificarVehiculo(String matricula, String marca, String modelo, 
-            String propietario, int numeroPlazaAparcamiento) {
+    public static void modificarVehiculo(String matricula, String marca, String modelo, String propietario, int numeroPlazaAparcamiento) {
         vehiculos[posicion].setMatricula(matricula);
         vehiculos[posicion].setMarca(marca);
         vehiculos[posicion].setModelo(modelo);

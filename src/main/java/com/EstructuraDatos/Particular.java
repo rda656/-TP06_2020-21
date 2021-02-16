@@ -32,8 +32,6 @@ public final class Particular extends Vehiculo{
     public void setNumeroPlazaAparcamiento(int numeroPlazaAparcamiento) {
         if(numeroPlazaAparcamiento > 0 && numeroPlazaAparcamiento <= 300)
             this.numeroPlazaAparcamiento = numeroPlazaAparcamiento;
-        else
-            this.numeroPlazaAparcamiento = 0;
     }
 
     @Override

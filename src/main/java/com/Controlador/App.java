@@ -20,7 +20,6 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
        
         scene = new Scene(loadFXML(ruta + "Principal"));
-        //scene = new Scene(loadFXML("/com/vista/EjemploLista")); 
 
         stage.setTitle("Gestión de vehículos");
         stage.setScene(scene);

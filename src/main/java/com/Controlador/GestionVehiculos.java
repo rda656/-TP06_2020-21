@@ -2,6 +2,7 @@ package com.Controlador;
 
 import com.EstructuraDatos.*;
 import com.EstructuraDatos.Enumerados.cuerpo;
+import com.Utilidades.ES;
 
 /**
  * Clase que realiza la gestión de los datos almacenados en 
@@ -16,13 +17,13 @@ public class GestionVehiculos {
      * Método que instancia los arrays.
      */
     public static void inicializar() {
-        vehiculos = new Vehiculo[10];
         posicion = 0;
-
+        vehiculos = new Vehiculo[10];  
         vehiculos[0] = new Particular("1234DDD", "Ford", "Mondeo", "Alfredo", 20);
         vehiculos[1] = new Oficial("5678ASS", "Fiat", "Punto", cuerpo.POLICIALOCAL, 4);
         vehiculos[2] = new Particular("7777AAA", "Opel", "Astra", "Juan", 1);        
         vehiculos[3] = new Oficial("6547WWW", "Seat", "Panda", cuerpo.URBANISMO, 5);
+
     }
 
     /**
@@ -133,7 +134,13 @@ public class GestionVehiculos {
      * Método que permite eliminar un registro del array.
      * @return devuelve true si se ha podido realizar el borrado y false si no hay registros almacenados.
      */
-    private static boolean eliminarVehiculo() {
+    public static boolean eliminarVehiculo() {
+        for(int i = posicion; i < vehiculos.length - 1; i++){            
+            vehiculos[i] = vehiculos [i+1];
+            if(vehiculos[i+1] == null)
+                return true;
+        }
+        vehiculos[vehiculos.length-1] = null;
         return true;
     }
 
@@ -169,5 +176,19 @@ public class GestionVehiculos {
         
         ((Particular)vehiculos[posicion]).setPropietario(propietario);
         ((Particular)vehiculos[posicion]).setNumeroPlazaAparcamiento(numeroPlazaAparcamiento);
+    }
+    
+    public static boolean leerDatos(){
+        Object datosLeidos = ES.leerArchivo("");
+        if (datosLeidos == null)
+            return false;
+        else{
+            vehiculos = (Vehiculo[]) datosLeidos;
+        }
+        return true;
+    }
+    
+    public static boolean guardarDatos(){
+        return ES.escribirArchivo("", vehiculos);
     }
 }

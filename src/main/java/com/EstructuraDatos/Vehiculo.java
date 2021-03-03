@@ -1,10 +1,12 @@
 package com.EstructuraDatos;
 
+import java.io.Serializable;
+
 /**
  * Clase que permite almacenar los datos básicos de un vehículo
  * @author Antonio Ramos
  */
-public abstract class Vehiculo {
+public abstract class Vehiculo implements Serializable{
     private String matricula;
     private String marca;
     private String modelo;

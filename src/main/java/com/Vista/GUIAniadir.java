@@ -10,9 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 
 /**
  * Clase que recoge todos los objetos y métodos necesarios que permiten modificar los datos de un vehículo.
@@ -26,9 +24,9 @@ public class GUIAniadir implements Initializable {
     
     @FXML
     private ComboBox<cuerpo> cb_Cuerpo ;
+
     
-    @FXML
-    private ToggleGroup tipoVehiculo;
+    private boolean esOficial;
 
     /**
      * Método que se ejecuta una vez inicializada la interfaz gráfica.
@@ -44,6 +42,8 @@ public class GUIAniadir implements Initializable {
         
         tf_Propietario.setDisable(true);
         tf_PlazaParking.setDisable(true);
+        
+        esOficial = true;
     }
     
     /**
@@ -57,6 +57,10 @@ public class GUIAniadir implements Initializable {
         
         tf_Propietario.setDisable(true);
         tf_PlazaParking.setDisable(true);
+        
+        esOficial = true;
+        
+        
     }
 
     /**
@@ -70,6 +74,8 @@ public class GUIAniadir implements Initializable {
         
         tf_Propietario.setDisable(false);
         tf_PlazaParking.setDisable(false);
+        
+        esOficial = false;
     }
     
     /**
@@ -80,7 +86,10 @@ public class GUIAniadir implements Initializable {
      */
     @FXML
     void guardar(ActionEvent event) throws IOException {
-        
+        if(esOficial)
+            System.out.println("Soy un vehículo oficial");
+        else
+            System.out.println("Particular");
         App.setRoot("Principal");
     }
     

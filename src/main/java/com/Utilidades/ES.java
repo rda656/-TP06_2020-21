@@ -5,6 +5,14 @@
  */
 package com.Utilidades;
 
+import com.EstructuraDatos.Vehiculo;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -15,6 +23,65 @@ import java.util.Scanner;
  */
 public class ES {
 
+    private static final String RUTA_DATOS = "datos.my";
+    
+    public static Object leerArchivo(String ruta){
+        if(ruta.length() == 0){
+            ruta = RUTA_DATOS;
+        }
+        try {
+            // Abrimos el fichero para lectura
+            FileInputStream fichero = new FileInputStream(ruta);
+            ObjectInputStream ficheroEntrada = new ObjectInputStream(fichero);
+
+            // Recuperar el objeto array del fichero
+            Object datos = ficheroEntrada.readObject();
+            
+            // Cerrar el fichero
+            ficheroEntrada.close();
+            
+            return datos;
+        } 
+        catch (ClassNotFoundException cnfe) {
+             System.out.println("No se pudo acceder a la clase adecuada para revertir la Serialización al leer del fichero.");
+        }
+        catch (FileNotFoundException fnfe) {
+             System.out.println("El fichero no existe.");
+        }
+        catch (IOException ioe) {
+             System.out.println("Error de Entrada/Salida: Falló la lectura del fichero. La aplicación sigue funcionando sin haber cargado los datos del archivo, para permitir crearlo de nuevo.");
+        }
+        
+        return null;
+    }
+    
+    public static boolean escribirArchivo(String ruta, Object datos){
+        try {
+            if(ruta.length() == 0){
+                ruta = RUTA_DATOS;
+            }
+            // Abrir fichero para escribir en él
+            FileOutputStream fichero = new FileOutputStream(new File(ruta));
+            ObjectOutputStream ficheroSalida = new ObjectOutputStream(fichero);
+
+            // Escribo el array en el fichero
+            ficheroSalida.writeObject(datos);
+
+            ficheroSalida.close();
+
+            return true;
+
+        } 
+        catch (FileNotFoundException fnfe) {
+            System.out.println("Error: El fichero no existe. ");
+        }
+        catch (IOException ioe) {
+            System.out.println("Error: falló la escritura en el fichero ");
+        }
+        
+        return false;
+    }
+    
     /**
      * Método que se encarga de realizar la lectura de un número entero desde teclado.
      * @return el valor entero leído desde teclado.

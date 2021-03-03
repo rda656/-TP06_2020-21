@@ -88,6 +88,18 @@ public class GUIPrincipal implements Initializable{
         App.setRoot("Modificar");
     }
     
+    @FXML
+    void eliminarRegistro(ActionEvent event) throws IOException {
+        if(GestionVehiculos.eliminarVehiculo()){
+            // alerta eliminado correctamente
+            rellenarCampos(GestionVehiculos.actualRegistro());
+        }
+        else{
+            // Alerta ha habido error
+        }
+        
+    }
+    
     /**
      * Método que se lanza al pulsar el botón añadir y que abre la interfaz que permite
      * agregar un nuevo registro.
@@ -97,6 +109,16 @@ public class GUIPrincipal implements Initializable{
     @FXML
     void aniadirRegistro(ActionEvent event) throws IOException {
         App.setRoot("Aniadir");
+    }
+    
+    @FXML
+    void leerDatos(ActionEvent event) throws IOException {
+        GestionVehiculos.leerDatos();
+    }
+    
+    @FXML
+    void guardarDatos(ActionEvent event) throws IOException {
+        GestionVehiculos.guardarDatos();
     }
     
     /**
